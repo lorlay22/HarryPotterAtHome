@@ -41,10 +41,10 @@ public class Wizard extends Charactere {
         GameLogic.clearConsole();
         //actions selon choix
         if (input == 1) {
-            GameLogic.printHeading(" You chose" + offensive[numOffensive] +);
+            GameLogic.printHeading(" You chose" + offensive[numOffensive] );
             numOffensive++;
         } else {
-            GameLogic.printHeading(" You chose" + defensive[numDefensive] +);
+            GameLogic.printHeading(" You chose" + defensive[numDefensive] );
             numDefensive++;
         }
         GameLogic.anythingToContinue();

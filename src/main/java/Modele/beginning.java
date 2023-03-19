@@ -9,7 +9,8 @@ public class beginning {
         System.out.println("Welcome in Harry Potter !");
 
         // Création du sorcier
-        Wizard wizard = new Wizard();
+        String name = null;
+        Wizard wizard = new Wizard(name);
         System.out.println("Creation of the wizard : " + wizard.getName());
 
         // Équipement de la baguette magique
@@ -24,14 +25,14 @@ public class beginning {
     }
 }
 
-class Wizard {
+public class Wizard {
     private String name;
     private Wand wand;
 
-    public Wizard() {
+    public Wizard(String name) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("What is the name of the wizard ?");
-        name = scanner.nextLine();
+        this.name = scanner.nextLine();
     }
 
     public String getName() {
