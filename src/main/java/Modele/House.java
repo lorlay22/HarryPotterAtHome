@@ -20,33 +20,33 @@ public class House {
                     '}';
         }
 
-    public double efficacitePotions() {
+    public double effectivePotions() {
         if (nom.equals("Hufflepuff")) {
-            return 1.5;
+            return 2;
         } else {
             return 1.0;
         }
     }
 
-    public double degatsSorts() {
+    public double effectiveSpell() {
         if (nom.equals("Slytherin")) {
-            return 1.5;
+            return 2;
         } else {
             return 1.0;
         }
     }
 
-    public double resistanceDegats() {
+    public double damageResistant() {
         if (nom.equals("Gryffondor")) {
-            return 1.5;
+            return 2;
         } else {
             return 1.0;
         }
     }
 
-    public double precisionSorts() {
+    public double preciseSpell() {
         if (nom.equals("RavenClaw")) {
-            return 1.5;
+            return 2;
         } else {
             return 1.0;
         }
