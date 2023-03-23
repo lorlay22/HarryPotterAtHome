@@ -20,13 +20,13 @@ public class beginning {
 
         // Assignation de la maison par le Choipeau Magique
         SortingHat sortingHat = new SortingHat();
-        String house = sortingHat.assignHouse(wizard);
+        House house = sortingHat.assignRandomHouse(wizard);
         System.out.println("The sorting hat decide that " + wizard.getName() + " go the house " + house + " !");
     }
 }
 
 public class Wizard {
-    private String name;
+    public String name;
     private Wand wand;
 
     public Wizard(String name) {

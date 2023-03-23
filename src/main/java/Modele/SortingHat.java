@@ -2,7 +2,7 @@ package Modele;
 import java.util.Random;
 
 public class SortingHat {
-    public House assignRandomHouse(){
+    public House assignRandomHouse(Wizard wizard){
         Random rand = new Random();
         int randomHouse = rand.nextInt(4)+1;
 
@@ -19,7 +19,7 @@ public class SortingHat {
                 return null;
         }
         SortingHat hat = new SortingHat();
-        House house = hat.assignRandomHouse();
+        House house = hat.assignRandomHouse(wizard);
         System.out.println("Your house is" + house.getName()+ "house");
     }
 }

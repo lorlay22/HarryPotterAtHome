@@ -53,7 +53,9 @@ public class House {
     }
 
 
-
+    public String getName()  {
+        String name = null;
+        return name;}
 }
 
 

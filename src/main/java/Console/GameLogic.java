@@ -1,12 +1,14 @@
 package Console;
 import Modele.Wizard;
 
+import javax.swing.*;
 import java.util.Scanner;
 import java.util.Stack;
 
 public class GameLogic {
     static Scanner scanner = new Scanner(System.in);
     static  Wizard wizard;
+    public static boolean isRunning;
 
     //methode pour que les joueurs mettent des choses dans la console
     public static int readInt(String prompt, int userChoices) {
@@ -73,7 +75,47 @@ public class GameLogic {
         }while (! nameSet);
         // creer nouveau joueur objet avec le nom
         wizard= new Wizard(name);
+        //game loop peut continuer
+        isRunning = true;
+        //start main game loop
+        gameLoop();
+    }
+    // methode pour continuer journey
+    public static void continueJourney(){
+
+    }
+    //affiche les informations les plus importantes du joueur
+    public static void characterInfo(){
+        clearConsole();
+        printHeading("Character info");
+        System.out.println(wizard.name +"\tHP: "+charactere.hp+ "/" + charactere.maxHP);
+        printSeperator(20);
+        System.out.println("XP:" + charactere.xp);
+    }
+    //afficher le menu
+    public static void printMenu(){
+        clearConsole();
+        printHeading("Menu");
+        System.out.println("Choose an action");
+        printSeperator(20);
+        System.out.println("(1) Continue on your journey");
+        System.out.println("(2) Character info");
+        System.out.println("(3) Exit");
+    }
+        //main game loop
+    public static void gameLoop(){
+        while(isRunning){
+            printMenu();
+            int input = readInt("->",3);
+            if (input ==1)
+                continueJourney();
+            else if (input ==2)
+                characterInfo();
+            else
+                isRunning = false;
+
         }
+    }
 
     }
 

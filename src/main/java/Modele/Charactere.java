@@ -5,7 +5,7 @@ public abstract class Charactere {
     public String name;
     public int maxHp, hp, xp;
     //construction pour personnage
-    public Charactere( String name, int maxHp, int x){
+    public Charactere( String name, int maxHp, int xp, int hp){
         this.name=name;
         this.maxHp=maxHp;
         this.xp = xp;
