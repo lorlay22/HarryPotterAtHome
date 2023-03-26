@@ -11,6 +11,8 @@ public abstract class Charactere {
         this.xp = xp;
         this.hp=maxHp;
     }
+
+
     //methode des personnages
     public abstract int attack();
     public abstract int defend();

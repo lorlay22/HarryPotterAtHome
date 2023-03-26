@@ -22,12 +22,14 @@ public class Wizard extends Charactere {
 
     @Override
     public int attack() {
-        return 0;
+
+        return (int) (Math.random()*(xp/4+numOffensive*3+3)+xp/10+numOffensive*2+numOffensive+1);
+
     }
 
     @Override
     public int defend() {
-        return 0;
+        return (int) (Math.random()*(xp/4+numDefensive*3+3)+xp/10+numDefensive*2+numDefensive+1);
     }
     // wizard choisit un trait pour chaque skill path
     public void chooseTrait() {
