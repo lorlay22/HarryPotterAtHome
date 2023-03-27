@@ -5,6 +5,8 @@ import Console.GameLogic;
 public class Wizard extends Charactere {
     //integers pour les points des offensives deffensives
     public int numOffensive, numDefensive;
+    //stats du wizard en plus
+    int gold, restsLeft, pots;
     // diiferentes attaques et offensives
     public String[]defensive={"Strength", "Power","Might","Godlike Strength"};
     public String[] offensive={ "Heavy Bones", "Stoneskin","Scale Armor", "Holy Aura"};
@@ -15,6 +17,10 @@ public class Wizard extends Charactere {
         super(name, 100, 0);
         this.numOffensive=0;
         this.numDefensive=0;
+        //stast en plus
+        this.gold = 5;
+        this.restsLeft=1;
+        this.pots=0;
         //le wizard choisit un trait quand il est créé
         chooseTrait();
     }

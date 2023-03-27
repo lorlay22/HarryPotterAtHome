@@ -170,7 +170,53 @@ public class GameLogic {
         printHeading("Character info");
         System.out.println(charactere.name +"\tHP: "+charactere.hp+ "/" + charactere.maxHP);
         printSeperator(20);
-        System.out.println("XP:" + charactere.xp);
+        //wizard xp adn gold
+        System.out.println("XP:" + charactere.xp+"\tGold:" + wizard.gold);
+        printSeperator(20);
+        System.out.println("# of Potions"+ wizard.pots);
+        printSeperator(20);
+    }
+    //creation  du shop
+    public static void shop(){
+        clearConsole();
+        printHeading("A weird shop is on your way");
+        int price =(int) (Math.random()*(10+wizard.pots*3)+10+ wizard.pots);
+        System.out.println("Do you want to buy one ?\n(1) Yes\n(2) No");
+        int input= readInt("->",2);
+        if(input==1){
+            clearConsole();
+            if(wizard.gold>= price){
+                printHeading("You bought a potion");
+                wizard.pots++;
+                wizard.gold-=price;
+            }else{
+                printHeading("You don't have enough money");
+                anythingToContinue();
+            }
+        }
+        //prendre du repos
+        public static void  takeRest(){
+            clearConsole();
+            if (wizard.restsLeft >=1){
+                printHeading("Do you want to take rest ?("+ wizard.restsLeft+" rest left");
+                System.out.println("(1) Yes\n(2) No");
+                int input = readInt("->",2);
+                if (input==1){
+                    clearConsole();
+                    if (wizard.hp< wizard.maHp){
+                        int hpRestored=(int)(Math.random()*(wizard.xp/4+1)+10);
+                        wizard.hp += hpRestored;
+                        if (wizard.hp>wizard.maxHp)
+                            wizard.hp=wizard.maxHp;
+                        System.out.println("You took a rest and now you have"+hpRestored+"health");
+                        wizard.restsLeft--;
+                    }
+                }else{
+                    System.out.println("You don't need to rest");
+                    anythingToContinue();
+                }
+            }
+        }
     }
     //creer random battle
     public static void randomBattle(){
@@ -221,11 +267,40 @@ public class GameLogic {
                         printHeading("You defeated the"+ enemy.name );
                         wizard.hp+=enemy.hp;
                         System.out.println("You earned"+ enemy.xp+ "XP");
+                        boolean addRest= (Math.random()*5+1<=2.25);
+                        int goldEarned= (int)(Math.random()*enemy.xp);
+                        if (addRest){
+                            wizard.restsLeft++;
+                            System.out.println("You eardned an additional rest");
+                        }
+                        if (goldEarned>0){
+                            wizard.gold+= goldEarned;
+                            System.out.println("You collect"+ goldEarned+"gold from the"+ enemy.name+"'s corpse");
+                        }
                         anythingToContinue();
                         break;
                     }
             }else if(input==2){
                     //utilise potion
+                    clearConsole();
+                    if (wizard.pots> 0 && wizard.hp < wizard.maxHp){
+                        //wizard peut prendre la potion
+                        //etre sur que le wizard veut prendre la potion
+                        printHeading("Do you want to drink a potion ?("+wizard.pots +"left)");
+                        System.out.println("(1)Yes\n(2) No");
+                        input = readInt("->",2);
+                        if (input==1){
+                            //wizard la prend
+                            wizard.hp=wizard.maxHp;
+                            clearConsole();
+                            printHeading("Ypu drink a potion, now your health is at"+ wizard.maxHp);
+                            anythingToContinue();
+                        }
+                    }else {
+                        //wizard ne peut pas prendre la potion
+                        printHeading("You don't have any potions or you're don't need it");
+                        anythingToContinue();
+                    }
                 }
             }else{
                 //s'enfuie
@@ -257,6 +332,12 @@ public class GameLogic {
         System.out.println("(1) Continue on your journey");
         System.out.println("(2) Character info");
         System.out.println("(3) Exit");
+    }
+    //final battle
+    public static void finalBattle(){
+        battle(new Enemy("Voldemort & Bellatrix Lestrange",300));
+        Story.printEnd(wizard);
+        isRunning=false;
     }
     //methode si le wizard est mort
     public static void wizardDied(){

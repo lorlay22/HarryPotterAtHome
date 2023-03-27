@@ -27,6 +27,8 @@ public class beginning {
 
 public class Wizard {
     public String name;
+    public int pots;
+    public boolean gold;
     private Wand wand;
 
     public Wizard(String name) {
