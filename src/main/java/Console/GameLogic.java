@@ -1,4 +1,6 @@
 package Console;
+import Modele.Charactere;
+import Modele.Enemy;
 import Modele.Wizard;
 
 import javax.swing.*;
@@ -9,6 +11,8 @@ public class GameLogic {
     static Scanner scanner = new Scanner(System.in);
     static  Wizard wizard;
     public static boolean isRunning;
+    public static Charactere charactere;
+    public static Enemy enemy;
     //random enemies
     public static String[]encounters={"Battle","Battle","Battle","Battle","Rest","Rest"};
     //enemy names
@@ -168,7 +172,7 @@ public class GameLogic {
     public static void characterInfo(){
         clearConsole();
         printHeading("Character info");
-        System.out.println(charactere.name +"\tHP: "+charactere.hp+ "/" + charactere.maxHP);
+        System.out.println(charactere.name +"\tHP: "+charactere.hp+ "/" + charactere.maxHp);
         printSeperator(20);
         //wizard xp adn gold
         System.out.println("XP:" + charactere.xp+"\tGold:" + wizard.gold);
@@ -203,11 +207,11 @@ public class GameLogic {
                 int input = readInt("->",2);
                 if (input==1){
                     clearConsole();
-                    if (wizard.hp< wizard.maHp){
-                        int hpRestored=(int)(Math.random()*(wizard.xp/4+1)+10);
-                        wizard.hp += hpRestored;
-                        if (wizard.hp>wizard.maxHp)
-                            wizard.hp=wizard.maxHp;
+                    if (charactere.hp< charactere.maxHp){
+                        int hpRestored=(int)(Math.random()*(charactere.xp/4+1)+10);
+                        charactere.hp += hpRestored;
+                        if (charactere.hp>charactere.maxHp)
+                            charactere.hp=charactere.maxHp;
                         System.out.println("You took a rest and now you have"+hpRestored+"health");
                         wizard.restsLeft--;
                     }
@@ -224,7 +228,7 @@ public class GameLogic {
         printHeading("You encountered an enemy, you will have to fight it");
         anythingToContinue();
         //creer nouvel enemy avec random nom
-        battle(new Enemy(enemies[(int)(Math.random()*enemies.lenght)],charactere.xp));
+        battle(new Enemy(enemy[(int)(Math.random()*enemy.lenght)],charactere.xp));
     }
     //main battle method
     public static void battle(Enemy enemy){
@@ -233,7 +237,7 @@ public class GameLogic {
             clearConsole();
             printHeading(enemy.name+"\nHP:"+enemy.hp"/"+enemy.maxHp);
             printHeading(charactere.name+"\nHP:"+charactere.hp"/"+charactere.maxHp);
-            Sytem.out.println("Choose an action");
+            System.out.println("Choose an action");
             printSeperator(20);
             System.out.println("(1)Fight\n(2) Use Potion\n(3) Run away");
             int input =readInt("->",3);
@@ -283,7 +287,7 @@ public class GameLogic {
             }else if(input==2){
                     //utilise potion
                     clearConsole();
-                    if (wizard.pots> 0 && wizard.hp < wizard.maxHp){
+                    if (charactere.pots> 0 && charactere.hp < charactere.maxHp){
                         //wizard peut prendre la potion
                         //etre sur que le wizard veut prendre la potion
                         printHeading("Do you want to drink a potion ?("+wizard.pots +"left)");
@@ -291,9 +295,9 @@ public class GameLogic {
                         input = readInt("->",2);
                         if (input==1){
                             //wizard la prend
-                            wizard.hp=wizard.maxHp;
+                            charactere.hp=charactere.maxHp;
                             clearConsole();
-                            printHeading("Ypu drink a potion, now your health is at"+ wizard.maxHp);
+                            printHeading("Ypu drink a potion, now your health is at"+ charactere.maxHp);
                             anythingToContinue();
                         }
                     }else {
@@ -316,8 +320,8 @@ public class GameLogic {
                     System.out.println("In your hurry you took" +dmgTook+" damage");
                     anythingToContinue();
                     //verifie si le wizard est toujoirs en vie
-                    if (wizard.hp<=0)
-                        wizard.died();
+                    if (charactere.hp<=0)
+                        charactere.died();
                 }
 
                 }
@@ -343,7 +347,7 @@ public class GameLogic {
     public static void wizardDied(){
         clearConsole();
         printHeading("You died ..");
-        printHeading("You earned"+ wizard.xp +" XP on your journey!");
+        printHeading("You earned"+ charactere.xp +" XP on your journey!");
        isRunning=false;
     }
         //main game loop
