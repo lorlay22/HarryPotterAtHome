@@ -9,10 +9,11 @@ import java.util.Stack;
 
 public class GameLogic {
     static Scanner scanner = new Scanner(System.in);
-    static  Wizard wizard;
+
     public static boolean isRunning;
+    public static Wizard wizard;
     public static Charactere charactere;
-    public static Enemy enemy;
+
     //random enemies
     public static String[]encounters={"Battle","Battle","Battle","Battle","Rest","Rest"};
     //enemy names
@@ -101,7 +102,7 @@ public class GameLogic {
             //histoire
             Story.printFirstActOutro();
             //le joueur level up
-            charactere.chooseTrait();
+            wizard.chooseTrait();
             //histoire
             Story.printSecondActIntro();
             //assigne nouvelles valeurs aux ennemies
@@ -127,7 +128,7 @@ public class GameLogic {
             //histoire
             Story.printSecondActOutro();
             //le joueur level up
-            charactere.chooseTrait();
+            wizard.chooseTrait();
             //histoire
             Story.printThirdActIntro();
         }else if (charactere.xp >=100 && act ==3){
@@ -137,7 +138,7 @@ public class GameLogic {
             //histoire
             Story.printThirdActOutro();
             //le joueur level up
-            charactere.chooseTrait();
+            wizard.chooseTrait();
             Story.printFourthActOutro();
             //guerie completement le wizard
             charactere.hp = charactere.maxHp;
@@ -199,21 +200,22 @@ public class GameLogic {
             }
         }
         //prendre du repos
-        public static void  takeRest(){
+        public static void takeRest(){
             clearConsole();
             if (wizard.restsLeft >=1){
-                printHeading("Do you want to take rest ?("+ wizard.restsLeft+" rest left");
+                printHeading("Do you want to take rest ?("+ wizard.restsLeft+" rest left)");
                 System.out.println("(1) Yes\n(2) No");
-                int input = readInt("->",2);
+                input = readInt("->", 2);
                 if (input==1){
                     clearConsole();
                     if (charactere.hp< charactere.maxHp){
                         int hpRestored=(int)(Math.random()*(charactere.xp/4+1)+10);
                         charactere.hp += hpRestored;
                         if (charactere.hp>charactere.maxHp)
-                            charactere.hp=charactere.maxHp;
-                        System.out.println("You took a rest and now you have"+hpRestored+"health");
-                        wizard.restsLeft--;
+                            charactere.hp = charactere.maxHp;
+                            System.out.println("You took a rest and now you have" + hpRestored + "health");
+                            wizard.restsLeft--;
+
                     }
                 }else{
                     System.out.println("You don't need to rest");
@@ -228,15 +230,15 @@ public class GameLogic {
         printHeading("You encountered an enemy, you will have to fight it");
         anythingToContinue();
         //creer nouvel enemy avec random nom
-        battle(new Enemy(enemy[(int)(Math.random()*enemy.lenght)],charactere.xp));
+        battle(new Enemy(enemy[(int)(Math.random()*enemy.length)],charactere.xp));
     }
     //main battle method
     public static void battle(Enemy enemy){
         //main battle loo^p
         while  (true){
             clearConsole();
-            printHeading(enemy.name+"\nHP:"+enemy.hp"/"+enemy.maxHp);
-            printHeading(charactere.name+"\nHP:"+charactere.hp"/"+charactere.maxHp);
+            printHeading(enemy.name+"\nHP:"+enemy.hp+"/"+enemy.maxHp);
+            printHeading(charactere.name+"\nHP:"+charactere.hp+"/"+charactere.maxHp);
             System.out.println("Choose an action");
             printSeperator(20);
             System.out.println("(1)Fight\n(2) Use Potion\n(3) Run away");
@@ -287,7 +289,7 @@ public class GameLogic {
             }else if(input==2){
                     //utilise potion
                     clearConsole();
-                    if (charactere.pots> 0 && charactere.hp < charactere.maxHp){
+                    if (wizard.pots> 0 && charactere.hp < charactere.maxHp){
                         //wizard peut prendre la potion
                         //etre sur que le wizard veut prendre la potion
                         printHeading("Do you want to drink a potion ?("+wizard.pots +"left)");
@@ -321,7 +323,7 @@ public class GameLogic {
                     anythingToContinue();
                     //verifie si le wizard est toujoirs en vie
                     if (charactere.hp<=0)
-                        charactere.died();
+                        wizardDied();
                 }
 
                 }

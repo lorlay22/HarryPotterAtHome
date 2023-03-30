@@ -4,6 +4,8 @@ public abstract class Charactere {
     //attributs de tous les personnages
     public String name;
     public int maxHp, hp, xp;
+    private Wand wand;
+
     //construction pour personnage
     public Charactere( String name, int maxHp, int xp, int hp){
         this.name=name;
@@ -19,4 +21,12 @@ public abstract class Charactere {
     //methode des personnages
     public abstract int attack();
     public abstract int defend();
+
+    public Wand getWand() {
+        return wand;
+    }
+
+    public void setWand(Wand wand) {
+        this.wand = wand;
+    }
 }

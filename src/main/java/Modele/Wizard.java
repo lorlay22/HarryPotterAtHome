@@ -2,19 +2,16 @@ package Modele;
 
 import Console.GameLogic;
 
-public class Wizard extends Charactere {
-    //integers pour les points des offensives deffensives
-    public int numOffensive, numDefensive;
-    //stats du wizard en plus
-    int gold, restsLeft, pots;
-    // diiferentes attaques et offensives
-    public String[]defensive={"Strength", "Power","Might","Godlike Strength"};
-    public String[] offensive={ "Heavy Bones", "Stoneskin","Scale Armor", "Holy Aura"};
-    // specific constructor du wizard
-    public Wizard (String name) {
-        //calling constructor of superclass
+import java.util.Scanner;
 
+public class Wizard extends Charactere {
+    public String name;
+
+    private Wand wand;
+
+    public Wizard(String name) {
         super(name, 100, 0);
+        this.name = name;
         this.numOffensive=0;
         this.numDefensive=0;
         //stast en plus
@@ -23,7 +20,33 @@ public class Wizard extends Charactere {
         this.pots=0;
         //le wizard choisit un trait quand il est créé
         chooseTrait();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("What is the name of the wizard ?");
+        this.name = scanner.nextLine();
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setWand(Wand wand) {
+        this.wand = wand;
+    }
+
+
+
+
+    //integers pour les points des offensives deffensives
+    public int numOffensive, numDefensive;
+    //stats du wizard en plus
+    public int gold;
+    public int restsLeft;
+    public int pots;
+    // diiferentes attaques et offensives
+    public String[]defensive={"Strength", "Power","Might","Godlike Strength"};
+    public String[] offensive={ "Heavy Bones", "Stoneskin","Scale Armor", "Holy Aura"};
+    // specific constructor du wizard
+
     // les methodes specifiques du wizard
 
     @Override

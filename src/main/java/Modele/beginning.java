@@ -24,26 +24,3 @@ public class beginning {
         System.out.println("The sorting hat decide that " + wizard.getName() + " go the house " + house + " !");
     }
 }
-
-public class Wizard {
-    public String name;
-    public int pots;
-    public boolean gold;
-    private Wand wand;
-
-    public Wizard(String name) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("What is the name of the wizard ?");
-        this.name = scanner.nextLine();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setWand(Wand wand) {
-        this.wand = wand;
-    }
-
-    public Wand getWand()
-}

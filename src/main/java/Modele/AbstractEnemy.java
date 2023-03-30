@@ -1,4 +1,4 @@
 package Modele;
 
-public abstract class AbstractEnemy {
+public abstract class AbstractEnemy extends Charactere {
 }
