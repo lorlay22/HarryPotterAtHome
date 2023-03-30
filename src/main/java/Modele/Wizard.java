@@ -3,11 +3,16 @@ package Modele;
 import Console.GameLogic;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Wizard extends Charactere {
     public String name;
 
     private Wand wand;
+    private int level;
+    private ArrayList<String> knownSpells;
+    private String Spell;
+
 
     public Wizard(String name) {
         super(name, 100, 0);
@@ -23,6 +28,8 @@ public class Wizard extends Charactere {
         Scanner scanner = new Scanner(System.in);
         System.out.println("What is the name of the wizard ?");
         this.name = scanner.nextLine();
+        level = 1;
+        knownSpells = new ArrayList<String>();
     }
 
     public String getName() {
@@ -32,6 +39,43 @@ public class Wizard extends Charactere {
     public void setWand(Wand wand) {
         this.wand = wand;
     }
+
+
+
+        public void levelUp() {
+            level++;
+            knownSpells();
+        }
+
+        public void knownSpells() {
+            // Choisissez un nouveau sort à apprendre en fonction du niveau actuel du wizard
+            String newSpell = getSpellForLevel(level);
+            knownSpells.add(newSpell);
+            System.out.println("Wizard a appris un nouveau sort: " + newSpell);
+        }
+
+        private String getSpellForLevel(int level) {
+            // Ici, nous avons simplement un exemple de sorts qui peuvent être appris à chaque niveau
+            switch (level) {
+                case 2:
+                    return "Spell 2";
+                case 3:
+                    return "Spell 3";
+                case 4:
+                    return "Spell 4";
+                // etc.
+                default:
+                    return "Aucun nouveau sort n'est disponible pour ce niveau.";
+            }
+        }
+
+        public void displayLearnedSpells() {
+            System.out.println("Sorts appris:");
+            for (String spell : knownSpells{
+                System.out.println("- " + Spell);
+            }
+        }
+
 
 
 
