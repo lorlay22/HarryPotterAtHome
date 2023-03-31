@@ -48,7 +48,7 @@ public class Wizard extends Charactere {
         }
 
         public void knownSpells() {
-            // Choisissez un nouveau sort à apprendre en fonction du niveau actuel du wizard
+
             String newSpell = getSpellForLevel(level);
             knownSpells.add(newSpell);
             System.out.println("Wizard a appris un nouveau sort: " + newSpell);
