@@ -28,8 +28,5 @@ public class Spell extends AbstractSpell {
     public static Spell Sectumsempra() {
         return new Spell(" Sectumsempra", 100);
     }
-    public static Spell Avada() {
-        return new Spell("Avada Kedavra", 120);
-    }
     }
 

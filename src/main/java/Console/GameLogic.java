@@ -7,7 +7,14 @@ import javax.swing.*;
 import java.util.Scanner;
 import java.util.Stack;
 
+import static jdk.internal.misc.OSEnvironment.initialize;
+import static jdk.jfr.internal.consumer.EventLog.update;
+
 public class GameLogic {
+    public void run() {
+        initialize();
+        update();
+    }
     static Scanner scanner = new Scanner(System.in);
 
     public static boolean isRunning;

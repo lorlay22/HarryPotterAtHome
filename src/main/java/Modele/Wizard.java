@@ -55,7 +55,7 @@ public class Wizard extends Charactere {
         }
 
         private String getSpellForLevel(int level) {
-            // Ici, nous avons simplement un exemple de sorts qui peuvent être appris à chaque niveau
+
             switch (level) {
                 case 2:
                     return "Spell 2";
