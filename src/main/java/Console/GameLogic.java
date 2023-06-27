@@ -189,30 +189,31 @@ public class GameLogic {
         printSeperator(20);
     }
     //creation  du shop
-    public static void shop(){
+    public static void shop() {
         clearConsole();
         printHeading("A weird shop is on your way");
-        int price =(int) (Math.random()*(10+wizard.pots*3)+10+ wizard.pots);
+        int price = (int) (Math.random() * (10 + wizard.pots * 3) + 10 + wizard.pots);
         System.out.println("Do you want to buy one ?\n(1) Yes\n(2) No");
-        int input= readInt("->",2);
-        if(input==1){
+        int input = readInt("->", 2);
+        if (input == 1) {
             clearConsole();
-            if(wizard.gold>= price){
+            if (wizard.gold >= price) {
                 printHeading("You bought a potion");
                 wizard.pots++;
-                wizard.gold-=price;
-            }else{
+                wizard.gold -= price;
+            } else {
                 printHeading("You don't have enough money");
                 anythingToContinue();
             }
         }
+    }
         //prendre du repos
         public static void takeRest(){
             clearConsole();
             if (wizard.restsLeft >=1){
                 printHeading("Do you want to take rest ?("+ wizard.restsLeft+" rest left)");
                 System.out.println("(1) Yes\n(2) No");
-                input = readInt("->", 2);
+                int input = readInt("->", 2);
                 if (input==1){
                     clearConsole();
                     if (charactere.hp< charactere.maxHp){
@@ -230,7 +231,7 @@ public class GameLogic {
                 }
             }
         }
-    }
+
     //creer random battle
     public static void randomBattle(){
         clearConsole();

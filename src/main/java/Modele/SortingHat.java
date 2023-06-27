@@ -18,8 +18,16 @@ public class SortingHat {
             default:
                 return null;
         }
+    }
+
+    public static void main(String[] args) {
         SortingHat hat = new SortingHat();
+        Wizard wizard = new Wizard("Harry");
         House house = hat.assignRandomHouse(wizard);
-        System.out.println("Your house is" + house.getName()+ "house");
+        if (house != null) {
+            System.out.println("Your house is " + house.getName() + " house");
+        } else {
+            System.out.println("Failed to assign a house to the wizard.");
+        }
     }
 }

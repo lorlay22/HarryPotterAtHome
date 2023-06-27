@@ -71,7 +71,7 @@ public class Wizard extends Charactere {
 
         public void displayLearnedSpells() {
             System.out.println("Sorts appris:");
-            for (String spell : knownSpells{
+            for (String spell : knownSpells){
                 System.out.println("- " + Spell);
             }
         }
